@@ -1,0 +1,170 @@
+
+{% extends "base.html" %} 
+{% load static %}
+{% block title%}Blog Details{% endblock %} 
+
+
+
+{% block css %} 
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      color: #333;
+    }
+
+    .form-container {
+      margin-top: 20px;
+    }
+
+    .form {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group button {
+      background-color: #0b0b0b;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-group button:hover {
+      background-color: #0c0c0c;
+    }
+
+    .register-link {
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  </style>
+    
+
+
+
+    {% endblock %}
+
+
+
+<!--script icindeki bilgi login mi gorunsun  register mi gorunsun  -->
+{% block js %}
+
+<script script >
+
+
+
+function showRegisterForm() {
+    document.querySelector('.login-form').style.display = 'none';
+    document.querySelector('.register-form').style.display = 'block';
+}
+
+function showLoginForm() {
+document.querySelector('.login-form').style.display = 'block';
+document.querySelector('.register-form').style.display = 'none';
+}
+</script>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="login-container">
+    <h2>Login</h2>
+    <div class="form-container">
+      <!-- Login Form -->
+      <form action="{% url 'send_person' %}"  method="POST" class="form login-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="login-username">Username:</label>
+          <input type="text" id="login-username" name="login-username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" name="login-password" required>
+        </div>
+        <div class="form-group">
+          <button name="login-submit" type="submit">Login</button>
+        </div>
+        <p class="register-link" onclick="showRegisterForm()">Create an account</p>
+        <br><a href=http://127.0.0.1:8000/admin>Admin login</a>.</p>
+      </form>
+  
+      <!-- Register Form -->
+      <form action="{% url 'send_info' %}" class="form register-form"  method="POST" style="display: none;">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="register-firstname">First Name:</label>
+          <input type="text" id="register-firstname" name="register-firstname" required>
+        </div>
+        <div class="form-group">
+          <label for="register-lastname">Last Name:</label>
+          <input type="text" id="register-lastname" name="register-lastname" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email:</label>
+          <input type="email" id="register-email" name="register-email" required>
+        </div>
+        <div class="form-group">
+          <label for="register-username">Username:</label>
+          <input type="text" id="register-username" name="register-username" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password:</label>
+          <input type="password" id="register-password" name="register-password" required>
+        </div>
+        <div class="form-group">
+            <label for="register-repassword">Repassword:</label>
+            <input type="password" id="register-repassword" name="register-repassword" required>
+          </div>
+        <div class="form-group">
+          <button name="submit" type="submit">Register</button>
+        </div>
+        <p class="register-link" onclick="showLoginForm()">Already have an account? Login here.</p>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

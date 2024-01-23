@@ -1,0 +1,184 @@
+{% extends "base.html" %} <!--Bağlamak için-->
+{% load static %}
+{% block title%}Homepage{% endblock %}
+{% block links %}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block css %}
+<style>
+    .w3-sidebar a {
+        font-family: "Roboto", sans-serif
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .w3-wide {
+        font-family: "Montserrat", sans-serif;
+    }
+</style>
+<style>
+    .w3-col {
+      padding: 8px;
+      box-sizing: border-box;
+      float: left;
+      width: 33.33%; /* Her sütunun genişliği 1/3 */
+      margin-bottom: 16px; /* Add some margin at the bottom for spacing */
+    }
+  
+    .w3-col img {
+      width: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+      height: 450px; /* Set a fixed height for consistency */
+    }
+  
+    .w3-col strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  
+    .w3-col p {
+      margin-top: 5px;
+    }
+  
+    .w3-col .w3-button {
+      margin-top: 10px;
+    }
+  
+    .w3-row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+
+
+
+{% endblock %}
+{% block js %}
+<script>
+    // Accordion  katerori kisminda kitap biolumunun acilan kismi
+    function myAccFunc(section) {
+        var x = document.getElementById("Clothing");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+<script>
+
+
+  function showNotification() {
+      // bildirim funksiyonu 
+      //buraya bilgiler veritabanindan cekiliyor 
+      alert("Bu bir bildirim kutusu örneğidir!");
+  }
+</script>
+
+{% endblock %}
+{% block content %}
+
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+    <div class="w3-container w3-display-container w3-padding-16">
+        <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+        <h3 class="w3-wide"><b>TAKAS</b></h3>
+    </div>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="showNotification()" class="w3-bar-item w3-button">Bildirimlerim</button>
+
+  </div>
+
+    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+        <!-- Add your "Profilim" link here --> 
+        <a href="{% url 'login' %}" class="w3-bar-item w3-button">Giriş</a>
+        <a href="{% url 'send_homepage' %}" class="w3-bar-item w3-button">Profilim</a>
+        <a href="{% url 'index' %}" class="w3-bar-item w3-button">Anasayfa</a>
+       
+        <a href="#" class="w3-bar-item w3-button">Ayakkabı</a>
+        <a href="#" class="w3-bar-item w3-button">Ev Eşyaları</a>
+        <a href="#" class="w3-bar-item w3-button">Elektronik</a>
+
+        <a onclick="myAccFunc('clothing')" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+            id="myBtnClothing">
+            Kitap <i class="fa fa-caret-down"></i>
+        </a>
+        <div id="Clothing" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                    class="fa fa-caret-right w3-margin-right"></i>Akademik Kitaplar</a>
+            <a href="#" class="w3-bar-item w3-button">Roman</a>
+            <a href="#" class="w3-bar-item w3-button">Yabancı dilde kitaplar </a>
+        </div>
+
+        <a href="#" class="w3-bar-item w3-button">Kıyafet</a>
+
+        <a href="#" class="w3-bar-item w3-button">Kırtasiye Malzemeleri</a>
+    </div>
+</nav>
+
+<!--Küçük ekranlarda üst menü-->
+<!-- Üst Başlık -->
+
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+    <div class="w3-bar-item w3-padding-24 w3-wide">TAKAS</div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
+            class="fa fa-bars"></i></a>
+</header>
+
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+<!-- Sayfa İçeriği-->
+<div class="w3-main" style="margin-left:250px">
+
+    <!-- Üst Başlık -->
+
+
+
+
+
+
+    <!--Küçük ekranlarda içeriği aşağı itin-->
+    <div class="w3-hide-large" style="margin-top:83px"></div>
+
+
+
+
+    <header class="w3-container w3-xlarge">
+        <p class="w3-right">
+            <i class="fa fa-search"></i>
+        </p>
+    </header>
+
+    <div id="product-container" class="w3-row">
+      {% for product in user_products %}
+          <div class="w3-col l4 s12 w3-third">
+              <div class="w3-container">
+                  <div class="w3-display-container">
+                    <img src="{% static 'image/urun_gorselleri/' %}{{ product.gorsel }}">
+                    <div class="w3-display-middle w3-display-hover">
+                          <a href="{% url 'products_details' product.id %}" class="w3-button w3-black">İncele</a>
+                      </div>
+                  </div>
+                  <strong>{{ product.urun_adi }}</strong><br>
+              </div>
+          </div>
+      {% endfor %}
+  </div>
+
+    
+
+    {% endblock %}

@@ -1,0 +1,344 @@
+{%extends "base.html"%}       <!--Bağlamak için-->
+{% load static %}
+{% block title%}kullanici urun yukleme{% endblock %}
+{% block links %}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block css %} 
+<style>
+    .w3-sidebar a {
+        font-family: "Roboto", sans-serif
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .w3-wide {
+        font-family: "Montserrat", sans-serif;
+    }
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    input, select, button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    button {
+        background-color: #0d0c0d;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #020302;
+    }
+</style>
+{% endblock %}
+{% block js %}
+<script>
+    //login sayfasina gitme fonksiyonu
+    function redirectToDownloadPage() {
+        window.location.href = "{% url 'login' %}";
+    }
+</script> 
+<script>
+    // Accordion  katerori kisminda kitap biolumunun acilan kismi
+    function myAccFunc(section) {
+        var x = document.getElementById("Clothing");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+<script>
+
+
+  function showNotification() {
+      // bildirim funksiyonu 
+      //buraya bilgiler veritabanindan cekiliyor 
+      alert("Bu bir bildirim kutusu örneğidir!");
+  }
+</script>
+
+{% endblock %}
+{% block content %}
+
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+    <div class="w3-container w3-display-container w3-padding-16">
+        <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+        <h3 class="w3-wide"><b>TAKAS</b></h3>
+    </div>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="showNotification()" class="w3-bar-item w3-button">Bildirimlerim</button>
+
+  </div>
+
+    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+        <!-- Add your "Profilim" link here --> 
+        <a href="{% url 'login' %}" class="w3-bar-item w3-button">Giriş</a>
+        <a href="{% url 'send_homepage' %}" class="w3-bar-item w3-button">Profilim</a>
+        <a href="{% url 'index' %}" class="w3-bar-item w3-button">Anasayfa</a>
+       
+        <a href="#" class="w3-bar-item w3-button">Ayakkabı</a>
+        <a href="#" class="w3-bar-item w3-button">Ev Eşyaları</a>
+        <a href="#" class="w3-bar-item w3-button">Elektronik</a>
+
+        <a onclick="myAccFunc('clothing')" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+            id="myBtnClothing">
+            Kitap <i class="fa fa-caret-down"></i>
+        </a>
+        <div id="Clothing" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+            <a href="#" class="w3-bar-item w3-button w3-light-grey"><i
+                    class="fa fa-caret-right w3-margin-right"></i>Akademik Kitaplar</a>
+            <a href="#" class="w3-bar-item w3-button">Roman</a>
+            <a href="#" class="w3-bar-item w3-button">Yabancı dilde kitaplar </a>
+        </div>
+
+        <a href="#" class="w3-bar-item w3-button">Kıyafet</a>
+
+        <a href="#" class="w3-bar-item w3-button">Kırtasiye Malzemeleri</a>
+    </div>
+</nav>
+
+
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+    <div class="w3-bar-item w3-padding-24 w3-wide">TAKAS</div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
+            class="fa fa-bars"></i></a>
+</header>
+
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+<!-- Sayfa İçeriği-->
+<div class="w3-main" style="margin-left:250px">
+
+    <!-- Üst Başlık -->
+
+
+
+
+
+
+    <!--Küçük ekranlarda içeriği aşağı itin-->
+    <div class="w3-hide-large" style="margin-top:83px"></div>
+
+
+
+
+    <header class="w3-container w3-xlarge">
+        <p class="w3-right">
+            <i class="fa fa-search"></i>
+        </p>
+    </header>
+
+
+
+
+
+<!--body icerisine yazilmasi gerekenler burya yazilacak bayilirken body etiketleri arasina konmasina gerek yok bu kelebekler zaten onu temsil ediyor-->
+<div class="container">
+    <h2>Ürün Yükleme</h2>
+    <form method="post"  action="{% url 'send_product' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="urun_adi">Ürün Adı:</label>
+            <input type="text" id="urun_adi" name="urun_adi" required>
+        </div>
+        <select class="urun_kategori" name="urunkategori" id="urunkategori">
+            <option value="#ANY">Kategori</option>
+            <option value=1>Elektronik</option>
+            <option value=2>Okuma Kitabı</option>
+            <option value=3>Ders Kitabı</option>
+            <option value=4>Diğer</option>
+        </select>
+        <div class="form-group">
+            <label for="urun_aciklamasi">Ürün Açıklaması:</label>
+            <input type="text" id="urun_aciklamasi" name="urun_aciklamasi" required>
+        </div>
+        <div class="form-group">
+            <label for="urun_durum">Ürün Durumu:</label>
+            <input type="text" id="urun_durum" name="urun_durum" required>
+        </div>
+        <div class="form-group">
+            <label for="urun_mekani">Ürünü nerelerde takas edebilirsiniz:</label>
+            <input type="text" id="urun_mekani" name="urun_mekani" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sehir">Şehir:</label>
+           <select id="sehir" name="sehir" required>
+            <option value="#ANY">İl</option>
+                                <option value=1>Adana</option>
+                                <option value=2>Adıyaman</option>
+                                <option value=3>Afyonkarahisar</option>
+                                <option value=4>Ağrı</option>
+                                <option value=5>Aksaray</option>
+                                <option value=6>Amasya</option>
+                                <option value=7>Ankara</option>
+                                <option value=8>Antalya</option>
+                                <option value=9>Ardahan</option>
+                                <option value=10>Artvin</option>
+                                <option value=11>Aydın</option>
+                                <option value=12>Balıkesir</option>
+                                <option value=13>Bartın</option>
+                                <option value=14>Batman</option>
+                                <option value=15>Bayburt</option>
+                                <option value=16>Bilecik</option>
+                                <option value=17>Bingöl</option>
+                                <option value=18>Bitlis</option>
+                                <option value=19>Bolu</option>
+                                <option value=20>Burdur</option>
+                                <option value=21>Bursa</option>
+                                <option value=22>Çanakkale</option>
+                                <option value=23>Çankırı</option>
+                                <option value=24>Çorum</option>
+                                <option value=25>Denizli</option>
+                                <option value=26>Diyarbakır</option>
+                                <option value=27>Düzce</option>
+                                <option value=28>Edirne</option>
+                                <option value=29>Elazığ</option>
+                                <option value=30>Erzincan</option>
+                                <option value=31>Erzurum</option>
+                                <option value=32>Eskişehir</option>
+                                <option value=33>Gaziantep</option>
+                                <option value=34>Giresun</option>
+                                <option value=35>Gümüşhane</option>
+                                <option value=36>Hakkâri</option>
+                                <option value=37>Hatay</option>
+                                <option value=38>Iğdır</option>
+                                <option value=39>Isparta</option>
+                                <option value=40>İstanbul</option>
+                                <option value=41>İzmir</option>
+                                <option value=42>Kahramanmaraş</option>
+                                <option value=43>Karabük</option>
+                                <option value=44>Karaman</option>
+                                <option value=45>Kars</option>
+                                <option value=46>Kastamonu</option>
+                                <option value=47>Kayseri</option>
+                                <option value=48>Kilis</option>
+                                <option value=49>Kırıkkale</option>
+                                <option value=50>Kırklareli</option>
+                                <option value=51>Kırşehir</option>
+                                <option value=52>Kocaeli</option>
+                                <option value=53>Konya</option>
+                                <option value=54>Kütahya</option>
+                                <option value=55>Malatya</option>
+                                <option value=56>Manisa</option>
+                                <option value=57>Mardin</option>
+                                <option value=58>Mersin</option>
+                                <option value=59>Muğla</option>
+                                <option value=60>Muş</option>
+                                <option value=61>Nevşehir</option>
+                                <option value=62>Niğde</option>
+                                <option value=63>Ordu</option>
+                                <option value=64>Osmaniye</option>
+                                <option value=65>Rize</option>
+                                <option value=66>Sakarya</option>
+                                <option value=67>Samsun</option>
+                                <option value=68>Şanlıurfa</option>
+                                <option value=69>Siirt</option>
+                                <option value=70>Sinop</option>
+                                <option value=71>Sivas</option>
+                                <option value=72>Şırnak</option>
+                                <option value=73>Tekirdağ</option>
+                                <option value=74>Tokat</option>
+                                <option value=75>Trabzon</option>
+                                <option value=76>Tunceli</option>
+                                <option value=77>Uşak</option>
+                                <option value=78>Van</option>
+                                <option value=79>Yalova</option>
+                                <option value=80>Yozgat</option>
+                                <option value=81>Zonguldak</option>
+                            </select>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="universite">Üniversite:</label>
+            <select id="universite" name="universite" required>
+                <option value="#ANY">Üniversite</option>
+                                <option value=1>Bursa Teknik Üniversitesi</option>
+                                <option value=2>Bursa Uludağ Üniversitesi</option>
+                                <option value=3>Boğaziçi Üniversitesi</option>
+                                <option value=4>İstanbul Teknik Üniversitesi </option>
+                                <option value=5>İstanbul Üniversitesi</option>
+                                <option value=6>Sabancı Üniversitesi</option>
+                                <option value=7>Koç Üniversitesi:</option>
+                                <option value=8>Hacettepe Üniversitesi</option>
+                                <option value=9>Ankara Üniversitesi</option>
+                                <option value=10>Gazi Üniversitesi</option>
+                                <option value=11>Orta Doğu Teknik Üniversitesi</option>
+
+
+                            
+                <!-- Diğer üniversiteleri buraya ekleyebilirsiniz -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="gorsel">Görsel:</label>
+            <input type="file" id="gorsel" name="gorsel" accept="image/*" required>
+        </div>
+
+        <div class="col-md-12"><label class="labels">Neyle Takas Etmek İstersiniz</label><input type="text" class="form-control" id="karsi_takas" name="karsi_takas"  placeholder="Takas Etmek istediğiniz ürünü giriniz..." value=""></div>
+        
+        <div class="form-group">
+            
+            <button onclick="redirectToDownloadPage()" name="submit_product">Ürün Yükle</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

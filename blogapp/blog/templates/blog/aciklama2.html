@@ -1,0 +1,115 @@
+{%extends "base.html"%}       <!--Bağlamak için-->
+{% load static %}
+{% block title%}acilama{% endblock %}
+{% block css %} 
+  <style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 300px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid #ddd; /* Kenarlık ekledik */
+        font-family: Arial;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: none;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-family: Arial; /* Yazı tipi ekledik */
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Butonun altta olması için yeni stil eklendi */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+</style>
+
+{% endblock %}
+    
+{% block js %}   
+<script>
+  function takasTalebiGonder() {
+    // Burada takas talebi gönderme işlemleri yapılabilir
+    alert("Ürün takas talebi gönderildi!");
+  }
+</script>
+{% endblock %}
+{% block content %}
+
+<table>
+    <tr>
+      <td colspan="2"><img src="{% static 'image/bot.jpeg' %}" alt="Resim"></td>
+    </tr>
+    <tr>
+      <th>Ürün İsmi:</th>
+      <td>Erkek Bot</td>
+    </tr>
+    <tr>
+      <th>Ürün Açıklama:</th>
+      <td>Su geçirmez bot</td>
+    </tr>
+    <tr>
+      <th>Ürün Durumu:</th>
+      <td>Az kullanılmış</td>
+    </tr>
+    <tr>
+      <th>Takas Edilecek Şehir:</th>
+      <td>Bursa</td>
+    </tr>
+    <tr>
+      <th>Takas Yeri:</th>
+      <td>Btü Mimar Sinan Kampüs</td>
+    </tr>
+    <tr>
+      <th>Neyle takas etmek istersiniz:</th>
+      <td>Spor ayakkabı</td>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="button-container">
+        <button type="button" onclick="takasTalebiGonder()">Ürün Takas Talebi Gönder</button>
+    </td>
+    </tr>
+
+  </table>
+  
+
+{% endblock %}
